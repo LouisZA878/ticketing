@@ -1,0 +1,45 @@
+apiVersion: skaffold/v4beta7
+kind: Config
+metadata:
+  name: micro
+build:
+  artifacts:
+    - image: sakosa878/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+    - image: sakosa878/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+    - image: sakosa878/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+    - image: sakosa878/orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+    - image: sakosa878/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+    - image: sakosa878/payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - infra/k8s/auth-deply.yaml
+    - infra/k8s/payments-depl.yaml
+    - infra/k8s/expiration-depl.yaml
+    - infra/k8s/auth-mongo-depl.yaml
+    - infra/k8s/payments-mongo-depl.yaml
+    - infra/k8s/orders-mongo-depl.yaml
+    - infra/k8s/expiration-redis-depl.yaml
+    - infra/k8s/tickets-mongo-depl.yaml
+    - infra/k8s/ingress-srv.yaml
+    - infra/k8s/client-depl.yaml
+    - infra/k8s/tickets-depl.yaml
+    - infra/k8s/nats-depl.yaml
+    - infra/k8s/orders-depl.yaml
